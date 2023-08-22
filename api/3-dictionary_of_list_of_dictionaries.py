@@ -18,15 +18,15 @@ if __name__ == "__main__":
 
     for user in data:
         user_id = str(user["id"])
-        user_task = [
+        user_tasks = [
             {
-                "task": task["title"],
+                "task": tasks["title"],
                 "username": user["username"],
-                "completed": task["completed"]
+                "completed": tasks["completed"]
             }
             for tasks in task if tasks["userId"] == user["id"]
         ]
-        dic_user[user_id] == user_task
+        dic_user[user_id] == user_tasks
         with open(f"todo_all_employees.json", "w+") as file:
-            file.write(json.dumps(dic_user))
-            file.close()
+          file.write(json.dumps(dic_user))
+          file.close()
