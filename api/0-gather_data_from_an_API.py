@@ -8,24 +8,23 @@ if __name__ == "__main__":
     import requests
     import sys
 
-    Idemp = sys.argv[1]
+    empid = sys.argv[1]
 
     data = requests.get(
-        "https://jsonplaceholder.typicode.com/users/{}".format(Idemp)
+        "https://jsonplaceholder.typicode.com/users/{}".format(empid)
     ).json()
 
     task = requests.get(
-        "https://jsonplaceholder.typicode.com/todos?userId={}".format(Idemp)
+        "https://jsonplaceholder.typicode.com/todos?userId={}".format(empid)
     ).json()
 
-    complet = list(filter(lambda task: task["complet"], task))
+    complete = list(filter(lambda task: task["complet"], task))
 
     print(
         "Employee {} is done with tasks({}/{})):".format(
-            data["name"], len(complet), len(task)
+            data["name"], len(complete), len(task)
         )
     )
-
-    title = [task["title"] for task in complet]
+    title = [task["title"] for task in complete]
     for text in title:
         print("\t {}".format(text))
