@@ -1,18 +1,16 @@
 #!/usr/bin/python3
 """Employee ID-based TODO List Progress"""
 
-
 if __name__ == "__main__":
     import json
-    import sys
     from urllib import request
-    import json
+    import csv
+    import sys
 
     empid = sys.argv[1]
 
-    url = request.urlopen(
-        "https://jsonplaceholder.typicode.com/users/{}".format(empid)
-        )
+    url = request.urlopen("https://jsonplaceholder.typicode.com/users/{}"
+                          .format(empid))
 
     data = json.loads(url.read().decode("utf-8"))
 
@@ -20,13 +18,13 @@ if __name__ == "__main__":
         "https://jsonplaceholder.typicode.com/todos?userId={}".format(empid)
     )
 
-    tasks = json.loads(url_task.read().decode("utf-8"))
+    task = json.loads(url_task.read().decode("utf-8"))
 
     index = "{}".format(data["id"])
     dic_user = {
         index: []
     }
-    for task in tasks:
+    for task in task:
         dic_user[index].append({
             "task": task["title"],
             "completed": task["completed"],
