@@ -18,7 +18,7 @@ if __name__ == "__main__":
         "https://jsonplaceholder.typicode.com/todos?userId={}".format(empid)
     ).json()
 
-    complete = list(filter(lambda task: task["complet"], task))
+    complete = list(filter(lambda task: task["completed"], task))
 
     print(
         "Employee {} is done with tasks({}/{})):".format(
