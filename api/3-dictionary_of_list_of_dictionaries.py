@@ -21,7 +21,7 @@ if __name__ == "__main__":
                 "username": user["username"],
                 "completed": task["completed"],
             }
-            for task in tasks if task["userId"] == user["id"]
+            for task in tasks if task["userId"] = user["id"]
         ]
         dic_user[user_id] == user_tasks
     with open(f"todo_all_employees.json", "w+") as file:
