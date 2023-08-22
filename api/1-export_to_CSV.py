@@ -9,7 +9,8 @@ if __name__ == "__main__":
 
     empid = sys.argv[1]
 
-    url = request.urlopen("https://jsonplaceholder.typicode.com/users/{}".format(empid))
+    url = request.urlopen("https://jsonplaceholder.typicode.com/users/{}"
+                          .format(empid))
 
     data = json.loads(url.read().decode("utf-8"))
 
@@ -23,5 +24,5 @@ if __name__ == "__main__":
     with open(f"{empid}.csv", "w+") as file:
         csvwriter = csv.writer(file, dialect="Dialect")
         for row in task:
-            csvwriter.writerow([row['userId'], data["username"], row["completed"],
-                                row["title"]])
+            csvwriter.writerow([row['userId'], data["username"],
+                                row["completed"], row["title"]])
