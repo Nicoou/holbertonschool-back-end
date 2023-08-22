@@ -26,8 +26,8 @@ if __name__ == "__main__":
 
     for tasks in task:
         dic_user[index].append({
-            "task": tasks["title"],
-            "completed": tasks["completed"],
+            "task": task["title"],
+            "completed": task["completed"],
             "username": data["username"]
         })
 
