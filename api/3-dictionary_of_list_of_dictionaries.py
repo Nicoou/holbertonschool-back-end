@@ -23,7 +23,6 @@ if __name__ == "__main__":
             }
             for task in tasks if task["userId"] == user["id"]
         ]
-        dic_user[user_id] == user_tasks
+        dic_user[user_id] = user_tasks
     with open(f"todo_all_employees.json", "w+") as file:
         file.write(json.dumps(dic_user))
-        file.close()
