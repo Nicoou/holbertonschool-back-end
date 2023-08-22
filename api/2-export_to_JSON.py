@@ -17,16 +17,16 @@ if __name__ == "__main__":
     url_task = request.urlopen(
         "https://jsonplaceholder.typicode.com/todos?userId={}".format(empid)
     )
-    tasks = json.loads(url_task.read().decode("utf-8"))
+    task = json.loads(url_task.read().decode("utf-8"))
 
     index = "{}".format(data["id"])
     dic_user = {
         index: []
     }
-    for task in tasks:
+    for tasks in task:
         dic_user[index].append({
-            "task": task["title"],
-            "completed": task["completed"],
+            "task": tasks["title"],
+            "completed": tasks["completed"],
             "username": data["username"],
         })
 
