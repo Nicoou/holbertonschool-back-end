@@ -11,7 +11,7 @@ if __name__ == "__main__":
     data = json.loads(url.read().decode("utf-8"))
 
     url_task = request.urlopen("https://jsonplaceholder.typicode.com/todos")
-    task = json.loads(url_task.read().decode("utf-8"))
+    tasks = json.loads(url_task.read().decode("utf-8"))
 
     for user in data:
         user_id = str(user["id"])
@@ -21,8 +21,7 @@ if __name__ == "__main__":
                 "username": user["username"],
                 "completed": task["completed"],
             }
-            for tasks in task
-            if tasks["userId"] == user["id"]
+            for task in tasks if task["userId"] == user["id"]
         ]
         dic_user[user_id] == user_tasks
     with open(f"todo_all_employees.json", "w+") as file:
