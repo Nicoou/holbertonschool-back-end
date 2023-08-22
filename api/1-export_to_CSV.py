@@ -3,32 +3,25 @@
 
 if __name__ == "__main__":
     import json
-    import requests
+    from urllib import request
     import csv
     import sys
 
     empid = sys.argv[1]
 
-    url = requests.get("https://jsonplaceholder.typicode.com/users/{}"
-                          .format(empid))
+    url = request.urlopen("https://jsonplaceholder.typicode.com/users/{}".format(empid))
 
-    data = json.loads(url.text)
+    data = json.loads(url.read().decode("utf-8"))
 
-    url_task = requests.get(
+    url_task = request.urlopen(
         "https://jsonplaceholder.typicode.com/todos?userId={}".format(empid)
     )
 
-    task = json.loads(url_task.text)
+    task = json.loads(url_task.read().decode("utf-8"))
 
-    csv_filename = f"{empid}.csv"
-
-    with open(csv_filename, "w", newline="") as csv_file:
-        csv_writer = csv.writer(csv_file, quoting=csv.QUOTE_ALL)
-        csv_writer.writerow(
-            ["USER_ID", "USERNAME", "TASK_COMPLETED_STATUS", "TASK_TITLE"]
-        )
-
+    csv.register_dialect("Dialect", quoting=csv.QUOTE_ALL)
+    with open(f"{empid}.csv", "w+") as file:
+        csvwriter = csv.writer(file, dialect="Dialect")
         for row in task:
-            csv_writer.writerow(
-                [row["userId"], data["name"], row["completed"], row["title"]]
-            )
+            csvwriter.writerow([row['userId'], data["username"], row["completed"],
+                                row["title"]])
